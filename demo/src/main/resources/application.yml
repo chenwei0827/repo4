@@ -4,3 +4,27 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query:  SELECT 1 FROM DUAL
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: true
+    #配置监控统计拦截的filters,去掉后监控页面SQL无法统计 ‘wall’用于防火墙。http://localhost:8080/druid/index.html
+   # filters: stat,wall,log4j
+   # maxPoolPreparedStatementPerConnectionSize: 20
+   # useGlobalDataSourceStat: true
+    #connection-properties: druid.stat.mergeSql=true; druid.stat.slowSqlMillis=500
+  #  schema:
+    #  - classpath: sql/department.sql
+   #   - classpath: sql/employee.sql
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
